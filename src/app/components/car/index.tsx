@@ -14,8 +14,8 @@ interface ICarProps extends ICar {}
 
 const CarContainer = styled.div`
   width: 16.5em;
-  min-height: 22.2em;
-  max-height: 25.2em;
+  min-height: 23em;
+  max-height: 23em;
   box-shadow: 0 1.3px 17px -2px rgba(0, 0, 0, 0.4);
   ${tw`
     flex
@@ -54,7 +54,7 @@ const PricesContainer = styled.div`
   ${tw`
     w-full
     flex
-    justify-start
+    justify-center
     mt-3
   `};
 `;
@@ -147,7 +147,7 @@ export function Car(props: ICarProps) {
   return (
     <CarContainer>
       <CarThumbnail>
-        <img src={thumbnailSrc} alt="thumbnail"/>
+        <img src={thumbnailSrc} alt="thumbnail" loading="lazy"/>
       </CarThumbnail>
       <CarName>{name}</CarName>
       <PricesContainer>
