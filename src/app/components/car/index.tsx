@@ -1,4 +1,3 @@
-  
 import {
   faEllipsisH,
   faFillDrip,
@@ -15,8 +14,8 @@ interface ICarProps extends ICar {}
 
 const CarContainer = styled.div`
   width: 16.5em;
-  min-height: 23em;
-  max-height: 23em;
+  min-height: 22.2em;
+  max-height: 25.2em;
   box-shadow: 0 1.3px 17px -2px rgba(0, 0, 0, 0.4);
   ${tw`
     flex
@@ -148,7 +147,7 @@ export function Car(props: ICarProps) {
   return (
     <CarContainer>
       <CarThumbnail>
-        <img src={thumbnailSrc} />
+        <img src={thumbnailSrc} alt="thumbnail"/>
       </CarThumbnail>
       <CarName>{name}</CarName>
       <PricesContainer>
@@ -182,7 +181,7 @@ export function Car(props: ICarProps) {
           <CarInfo>{gas}</CarInfo>
         </CarDetail>
       </CarDetailsContainer>
-      <RentButton text="Rent Now" />
+      <RentButton text="Rent Now"/>
     </CarContainer>
   );
 }
