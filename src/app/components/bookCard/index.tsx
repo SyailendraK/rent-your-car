@@ -83,18 +83,21 @@ const LineSeperator = styled.span`
 
 const DateCalendar = styled(Calendar)`
   position: absolute;
-  max-width: none;
+  min-width: 18em;
   user-select: none;
   top: 2em;
   left: 0;
   ${({ offset }: any) =>
     offset &&
     css`
-      left: -6em;
+      left: -2em;
     `};
   @media (min-width: ${SCREENS.md}) {
     top: 3.5em;
     left: -2em;
+  }
+  @media (max-width: ${SCREENS.sm}) {
+    min-width: 15em;
   }
 ` as any;
 
@@ -115,7 +118,7 @@ export function BookCard() {
   };
 
   return (
-    <CardContainer>
+    <CardContainer >
       <ItemContainer>
         <Icon>
           <FontAwesomeIcon icon={faCalendarAlt} />

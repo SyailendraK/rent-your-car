@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import tw from 'twin.macro';
 import { ICar } from '../../../typings/car';
 import { Car } from '../../components/car';
-import Carousel, {Dots, slidesToShowPlugin} from '@brainhubeu/react-carousel';
+import Carousel, {Dots, slidesToShowPlugin, slidesToScrollPlugin} from '@brainhubeu/react-carousel';
 import "@brainhubeu/react-carousel/lib/style.css";
+import { useMediaQuery } from 'react-responsive';
+import { SCREENS } from '../../components/responsive';
 
 const TopCarsContainer = styled.div`
   ${tw`
@@ -43,6 +45,8 @@ const CarsContainer = styled.div`
 `;
 
 export function TopCars(){
+  
+  const isMobile = useMediaQuery({maxWidth: SCREENS.sm});
 
   const [current,setCurrent] = useState(0);
 
@@ -68,25 +72,61 @@ export function TopCars(){
     gas: "Petrol",
   };
 
+  const cars = [
+    (<Car {...testCar} />), 
+    (<Car {...testCar2} />),
+    (<Car {...testCar} />), 
+    (<Car {...testCar2} />), 
+    (<Car {...testCar} />),
+    (<Car {...testCar} />), 
+    (<Car {...testCar2} />),
+    (<Car {...testCar} />), 
+    (<Car {...testCar2} />), 
+  ];
+
   return <TopCarsContainer>
-      <Title>Explore Our Top Deals</Title>
+    <Title>Explore Our Top Deals</Title>
     <CarsContainer>
-      <Carousel value={current} onChange={setCurrent} slides={[(<Car {...testCar} />), 
-      (<Car {...testCar2} />),
-      (<Car {...testCar} />), 
-      (<Car {...testCar2} />), 
-      (<Car {...testCar} />),
-    ]}
-    plugins={[
-      "clickToChange",
-      {
-        resolve: slidesToShowPlugin,
-        options: {
-          numberOfSlides: 3,
-        }
-      }
-    ]}/>
-      <Dots value={current} onChange={setCurrent} number={2}/>
+      <Carousel value={current} onChange={setCurrent} slides={cars}
+      plugins={[
+        "arrows",
+        "clickToChange",
+        {
+          resolve: slidesToShowPlugin,
+          options: {
+            numberOfSlides: 3,
+          }
+        },
+        {
+          resolve: slidesToScrollPlugin,
+          options: {
+            numberOfSlides: 3,
+          }
+        },
+      ]}
+      breakpoints={{
+        640: {
+          plugins: [
+            {
+              resolve: slidesToShowPlugin,
+              options: {
+                numberOfSlides: 1,
+              }
+            }
+          ]
+        },
+        900: {
+          plugins: [
+            {
+              resolve: slidesToShowPlugin,
+              options: {
+                numberOfSlides: 2,
+              }
+            }
+          ]
+        },
+      }}/>
+      <Dots value={current} onChange={setCurrent} number={isMobile ? cars.length : Math.ceil(cars.length / 3)}/>
     </CarsContainer>
   </TopCarsContainer>
 }
