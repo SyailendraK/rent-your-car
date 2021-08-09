@@ -126,7 +126,7 @@ export function TopCars(){
           ]
         },
       }}/>
-      <Dots value={current} onChange={setCurrent} number={isMobile ? cars.length : Math.ceil(cars.length / 3)}/>
+      {/* <Dots value={current} onChange={setCurrent} number={isMobile ? cars.length : Math.ceil(cars.length / 3)}/> */}
     </CarsContainer>
   </TopCarsContainer>
 }
