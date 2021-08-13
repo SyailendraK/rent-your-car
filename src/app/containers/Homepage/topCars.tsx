@@ -50,6 +50,8 @@ export function TopCars(){
 
   const [current,setCurrent] = useState(0);
 
+  
+
   const testCar: ICar = {
     name: "Audi S3 Car",
     mileage: "10k",
